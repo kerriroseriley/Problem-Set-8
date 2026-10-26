@@ -11,4 +11,8 @@ library(haven)
 # Set the working directory
 setwd("~/Desktop/Current Classes/R/Problem Set 8")
 
-# 
+# Filter 
+
+
+
+# Graph

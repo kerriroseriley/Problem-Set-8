@@ -7,25 +7,21 @@ format:
 
 
 1. Code 16: Defense (Core Focus)
-Why it fits: Shipbuilding and fleet expansion fall directly under national security strategy, military force structure, and navy readiness.
-Key Subtopics to Filter:
-1610 — Procurement: Covers naval ship construction programs, defense industrial base capacity, defense contracts, and weapons systems acquisition.
-1604 — Readiness: Covers fleet maintenance backlog, sealift capabilities, and deployment availability.
-1617 — Contractors: Covers defense industry supply chains, shipyard contracting oversight, and government-contractor relationships.
-
-
 2. Code 10: Transportation (Commercial Maritime & Industrial Base)
-Why it fits: Non-military merchant marine capabilities, domestic shipyards, and commercial waterways fall under maritime policy. Navy readiness relies heavily on the commercial shipyard ecosystem (such as Jones Act regulations and dual-use industrial infrastructure).
-Key Subtopic to Filter:
-1007 — Maritime: Covers maritime shipping, inland waterways, commercial fleet maintenance, and domestic shipyard regulations.
-1010 — Infrastructure: Covers port facilities, dockyard infrastructure, and public works supporting marine logistics.
 
+
+Subtopic 1610 (Military Procurement & Weapons Systems): 46 Executive Orders (capturing ship procurement, naval conversion programs, and strategic acquisitions).
+Subtopic 1007 (Maritime Transportation): 51 Executive Orders (capturing merchant marine shipping, commercial dockyards, and port logistics).
+Subtopic 1604 (Military Readiness & Sealift): 39 Executive Orders (capturing Military Sealift Command, mobilization requirements, and fleet readiness).
+Subtopic 1608 (Military Manpower & Personnel): 327 Executive Orders (active personnel strength levels and staffing requirements).
 
 
 What follows are three visualizations showing...
  
-- Figure 1: 
-- Figure 2: 
+- Figure 1: Trends in Presidential Executive Orders: National Defense (Topic 16) vs. Transportation (Topic 10), 1945–2025
+
+- Figure 2: Executive Priorities in Defense: Military Readiness & Strategic Mobilization (Subtopic 1604) vs. Weapons & Naval Procurement (Subtopic 1610), 1945–2025
+
 - Figure 3: 
 
 ## Figure 1
