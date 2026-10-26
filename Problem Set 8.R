@@ -11,8 +11,8 @@ library(tidyverse)
 setwd("~/Desktop/Current Classes/R/Problem Set 8")
 
 # Load in the 2 data sets (Executive Memos and Public Law Titles)
-exec <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Executive_Orders.csv")
-public <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Public_Laws.csv")
+exec <- read_csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Executive_Orders.csv")
+public <- read_csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Public_Laws.csv")
 
 # Select subset of rows we need for analysis 
 exec_subset <- exec |> select(year, majortopic, subtopic)
@@ -24,11 +24,12 @@ fig1_annual <- exec_subset |>
   mutate(majortopic = factor(majortopic, 
                              levels = c(16, 10), 
                              labels = c("Defense (Topic 16)", "Transportation (Topic 10)"))) |> 
-  count(year, majortopic)
+  count(year, majortopic) |> 
+  complete(year = 1945:2025, subtopic, fill = list(n = 0))
 
 
 # Figure 1: Trends in Presidential Executive Orders: National Defense (Topic 16) vs. Transportation (Topic 10), 1945–2025
-ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = majortopic)) +
+plot1 = ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = majortopic)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Defense (Topic 16)" = "#1f77b4", 
@@ -54,10 +55,11 @@ fig2_annual <- exec_subset |>
   mutate(subtopic = factor(subtopic, 
                            levels = c(1604, 1610), 
                            labels = c("Military Readiness (1604)", "Naval & Weapons Procurement (1610)"))) |> 
-  count(year, subtopic)
+  count(year, subtopic)|> 
+  complete(year = 1945:2025, subtopic, fill = list(n = 0))
 
 # Figure 2: Executive Priorities in Defense: Military Readiness & Strategic Mobilization (Subtopic 1604) vs. Weapons & Naval Procurement (Subtopic 1610), 1945–2025
-ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
+plot2 = ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Military Readiness (1604)" = "#1f77b4", 
@@ -77,7 +79,7 @@ ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
   )
 
 
-# Aggregate annual counts for Subtopic 1610 across both data sets
+# Aggregate annual counts for Subtopic 1610 across both datasets
 eo_1610 <- exec_subset |> 
   filter(year >= 1945, subtopic == 1610) |> 
   count(year, name = "Executive Orders")
@@ -86,8 +88,9 @@ pl_1610 <- public_subset |>
   filter(year >= 1945, subtopic == 1610) |> 
   count(year, name = "Public Laws")
 
-# Join or merge data sets into a unified long-format df
+# Merge into unified long-format dataframe with explicit year range
 fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |> 
+  complete(year = 1945:2025) |> 
   replace_na(list(`Executive Orders` = 0, `Public Laws` = 0)) |> 
   pivot_longer(
     cols = c("Executive Orders", "Public Laws"),
@@ -96,7 +99,7 @@ fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |>
   )
 
 # Figure 3: Institutional Division of Labor in Defense Procurement: Presidential Orders vs. Enacted Legislation (Subtopic 1610), 1940s–2020s
-ggplot(fig3_annual, aes(x = year, y = n, color = institution, group = institution)) +
+plot3 = ggplot(fig3_annual, aes(x = year, y = n, color = institution, group = institution)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Executive Orders" = "#1f77b4", 
@@ -114,3 +117,47 @@ ggplot(fig3_annual, aes(x = year, y = n, color = institution, group = institutio
     legend.position = "bottom",
     plot.title = element_text(face = "bold", size = 11)
   )
+
+# Figure 4: 
+eo_1604 <- exec_subset |> 
+  filter(year >= 1945, subtopic == 1604) |> 
+  count(year, name = "Executive Orders")
+
+pl_1604 <- public_subset |> 
+  filter(year >= 1945, subtopic == 1604) |> 
+  count(year, name = "Public Laws")
+
+fig4_annual <- full_join(eo_1604, pl_1604, by = "year") |> 
+  complete(year = 1945:2025) |> 
+  replace_na(list(`Executive Orders` = 0, `Public Laws` = 0)) |> 
+  pivot_longer(
+    cols = c("Executive Orders", "Public Laws"),
+    names_to = "institution",
+    values_to = "n"
+  )
+
+plot4 = ggplot(fig4_annual, aes(x = year, y = n, color = institution, group = institution)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.5, alpha = 0.7) +
+  scale_color_manual(values = c("Executive Orders" = "#1f77b4", 
+                                "Public Laws" = "#ff7f0e")) +
+  scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
+  labs(
+    title = "Figure 4: Institutional Division of Labor in Military Readiness, 1945–2025",
+    subtitle = "Comparing Executive Orders vs. Passed Legislation (Subtopic 1604)",
+    x = "Year",
+    y = "Total Policy Outputs (Subtopic 1604)",
+    color = NULL
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(face = "bold", size = 11)
+        )
+
+# Save the figures
+
+ggsave("figures/figure1.png", plot = plot1, width = 8, height = 5, dpi = 300)
+ggsave("figures/figure2.png", plot = plot2, width = 8, height = 5, dpi = 300)
+ggsave("figures/figure3.png", plot = plot3, width = 8, height = 5, dpi = 300)
+ggsave("figures/figure4.png", plot = plot4, width = 8, height = 5, dpi = 300)
+

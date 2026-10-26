@@ -5,7 +5,8 @@ format:
   pdf: default
 ---
 
-Code 16: Defense and Code 10: Transportation
+Code 16 - Defense
+Code 10 - Transportation
 
 What follows are three visualizations showing...
  
@@ -15,9 +16,13 @@ What follows are three visualizations showing...
 
 - Figure 3: Institutional Division of Labor in Defense Procurement: Presidential Orders vs. Enacted Legislation (Subtopic 1610), 1940s–2020s
 
+- Figure 4: Institutional Division of Labor in Military Readiness, 1945–2025
+
 ## Figure 1
 ![Figure 1](figures/figure1.png){fig-align="center" width="70%"}
 ## Figure 2
 ![Figure 2](figures/figure2.png){fig-align="center" width="70%"}
 ## Figure 3
 ![Figure 3](figures/figure3.png){fig-align="center" width="70%"}
+## Figure 4
+![Figure 4](figures/figure4.png){fig-align="center" width="70%"}
