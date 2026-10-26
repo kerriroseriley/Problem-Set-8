@@ -5,6 +5,23 @@ format:
   pdf: default
 ---
 
+
+1. Code 16: Defense (Core Focus)
+Why it fits: Shipbuilding and fleet expansion fall directly under national security strategy, military force structure, and navy readiness.
+Key Subtopics to Filter:
+1610 — Procurement: Covers naval ship construction programs, defense industrial base capacity, defense contracts, and weapons systems acquisition.
+1604 — Readiness: Covers fleet maintenance backlog, sealift capabilities, and deployment availability.
+1617 — Contractors: Covers defense industry supply chains, shipyard contracting oversight, and government-contractor relationships.
+
+
+2. Code 10: Transportation (Commercial Maritime & Industrial Base)
+Why it fits: Non-military merchant marine capabilities, domestic shipyards, and commercial waterways fall under maritime policy. Navy readiness relies heavily on the commercial shipyard ecosystem (such as Jones Act regulations and dual-use industrial infrastructure).
+Key Subtopic to Filter:
+1007 — Maritime: Covers maritime shipping, inland waterways, commercial fleet maintenance, and domestic shipyard regulations.
+1010 — Infrastructure: Covers port facilities, dockyard infrastructure, and public works supporting marine logistics.
+
+
+
 What follows are three visualizations showing...
  
 - Figure 1: 
