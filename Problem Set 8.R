@@ -6,10 +6,6 @@
 
 # Import Packages
 library(tidyverse)
-library(haven)
-library(ggplot2)
-library(dplyr)
-library(tidyr)
 
 # Set the working directory
 setwd("~/Desktop/Current Classes/R/Problem Set 8")
@@ -53,8 +49,6 @@ ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = majortopic)
     plot.title = element_text(face = "bold", size = 12)
   )
 
-library(ggplot2)
-library(dplyr)
 
 # Aggregate annual counts for Subtopics 1604 and 1610
 fig2_annual <- exec_subset |> 
@@ -68,8 +62,8 @@ fig2_annual <- exec_subset |>
 ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
-  scale_color_manual(values = c("Military Readiness (1604)" = "#2ca02c", 
-                                "Naval & Weapons Procurement (1610)" = "#d62728")) +
+  scale_color_manual(values = c("Military Readiness (1604)" = "#1f77b4", 
+                                "Naval & Weapons Procurement (1610)" = "#ff7f0e")) +
   scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
   labs(
     title = "Executive Priorities in Defense: Military Readiness vs. Procurement, 1945–2025",
@@ -107,8 +101,8 @@ fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |>
 ggplot(fig3_annual, aes(x = year, y = n, color = institution, group = institution)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
-  scale_color_manual(values = c("Executive Orders" = "#d62728", 
-                                "Public Laws" = "#1f77b4")) +
+  scale_color_manual(values = c("Executive Orders" = "#1f77b4", 
+                                "Public Laws" = "#ff7f0e")) +
   scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
   labs(
     title = "Institutional Division of Labor in Defense Procurement, 1945–2025",
