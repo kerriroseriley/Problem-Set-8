@@ -6,7 +6,7 @@ format:
 ---
 
 What follows are three visualizations showing...
-
+ 
 - Figure 1: 
 - Figure 2: 
 - Figure 3: 
