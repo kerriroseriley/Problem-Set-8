@@ -5,16 +5,7 @@ format:
   pdf: default
 ---
 
-
-1. Code 16: Defense (Core Focus)
-2. Code 10: Transportation (Commercial Maritime & Industrial Base)
-
-
-Subtopic 1610 (Military Procurement & Weapons Systems): 46 Executive Orders (capturing ship procurement, naval conversion programs, and strategic acquisitions).
-Subtopic 1007 (Maritime Transportation): 51 Executive Orders (capturing merchant marine shipping, commercial dockyards, and port logistics).
-Subtopic 1604 (Military Readiness & Sealift): 39 Executive Orders (capturing Military Sealift Command, mobilization requirements, and fleet readiness).
-Subtopic 1608 (Military Manpower & Personnel): 327 Executive Orders (active personnel strength levels and staffing requirements).
-
+Code 16: Defense and Code 10: Transportation
 
 What follows are three visualizations showing...
  
