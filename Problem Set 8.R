@@ -44,7 +44,7 @@ ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = majortopic)
   theme_minimal() +
   theme(
     legend.position = "bottom",
-    plot.title = element_text(face = "bold", size = 12)
+    plot.title = element_text(face = "bold", size = 11)
   )
 
 
@@ -114,5 +114,3 @@ ggplot(fig3_annual, aes(x = year, y = n, color = institution, group = institutio
     legend.position = "bottom",
     plot.title = element_text(face = "bold", size = 11)
   )
-
-
