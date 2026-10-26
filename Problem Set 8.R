@@ -7,11 +7,14 @@
 # Import Packages
 library(tidyverse)
 library(haven)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
 
 # Set the working directory
 setwd("~/Desktop/Current Classes/R/Problem Set 8")
 
-# Load in the 2 datasets (Executive Memos and Public Law Titles)
+# Load in the 2 data sets (Executive Memos and Public Law Titles)
 exec <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Executive_Orders.csv")
 public <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Public_Laws.csv")
 
@@ -20,12 +23,9 @@ public <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Public_Law
 exec_subset <- exec |> select(year, majortopic, subtopic)
 public_subset <- public |> select(year, majortopic, subtopic)
 
-# Graph
+# Graphing
 
-library(ggplot2)
-library(dplyr)
-
-# 1. Aggregate annual counts for Topics 10 and 16
+# Aggregate annual counts for Topics 10 and 16
 fig1_annual <- exec_subset |> 
   filter(year >= 1945, majortopic %in% c(10, 16)) |> 
   mutate(majortopic = factor(majortopic, 
@@ -33,7 +33,7 @@ fig1_annual <- exec_subset |>
                              labels = c("Defense (Topic 16)", "Transportation (Topic 10)"))) |> 
   count(year, majortopic)
 
-# Plot 1
+# Figure 1: 
 ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = majortopic)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
@@ -56,7 +56,7 @@ ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = majortopic)
 library(ggplot2)
 library(dplyr)
 
-# 1. Aggregate annual counts for Subtopics 1604 and 1610
+# Aggregate annual counts for Subtopics 1604 and 1610
 fig2_annual <- exec_subset |> 
   filter(year >= 1945, subtopic %in% c(1604, 1610)) |> 
   mutate(subtopic = factor(subtopic, 
@@ -64,7 +64,7 @@ fig2_annual <- exec_subset |>
                            labels = c("Military Readiness (1604)", "Naval & Weapons Procurement (1610)"))) |> 
   count(year, subtopic)
 
-# 2. Plot Annual Line Chart
+# Figure 2: 
 ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
@@ -85,11 +85,7 @@ ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
   )
 
 
-library(ggplot2)
-library(dplyr)
-library(tidyr)
-
-# 1. Aggregate annual counts for Subtopic 1610 across both datasets
+# Aggregate annual counts for Subtopic 1610 across both datasets
 eo_1610 <- exec_subset |> 
   filter(year >= 1945, subtopic == 1610) |> 
   count(year, name = "Executive Orders")
@@ -98,7 +94,7 @@ pl_1610 <- public_subset |>
   filter(year >= 1945, subtopic == 1610) |> 
   count(year, name = "Public Laws")
 
-# 2. Combine datasets into a unified long-format dataframe
+# Join or merge datasets into a unified long-format DataFrame
 fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |> 
   replace_na(list(`Executive Orders` = 0, `Public Laws` = 0)) |> 
   pivot_longer(
