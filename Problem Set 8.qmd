@@ -22,7 +22,7 @@ What follows are three visualizations showing...
 
 - Figure 2: Executive Priorities in Defense: Military Readiness & Strategic Mobilization (Subtopic 1604) vs. Weapons & Naval Procurement (Subtopic 1610), 1945–2025
 
-- Figure 3: 
+- Figure 3: Institutional Division of Labor in Defense Procurement: Presidential Orders vs. Enacted Legislation (Subtopic 1610), 1940s–2020s
 
 ## Figure 1
 ![Figure 1](figures/figure1.png){fig-align="center" width="70%"}
