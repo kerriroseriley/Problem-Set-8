@@ -4,3 +4,11 @@
 #Requires: 
 #Output: Figures and Quarto Document typeset as a .pdf
 
+# Import Packages
+library(tidyverse)
+library(haven)
+
+# Set the working directory
+setwd("~/Desktop/Current Classes/R/Problem Set 8")
+
+# 
