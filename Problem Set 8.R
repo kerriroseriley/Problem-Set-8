@@ -29,7 +29,7 @@ fig1_annual <- exec_subset |>
                              labels = c("Defense (Topic 16)", "Transportation (Topic 10)"))) |> 
   count(year, majortopic)
 
-# Figure 1: 
+# Figure 1: Trends in Presidential Executive Orders: National Defense (Topic 16) vs. Transportation (Topic 10), 1945–2025
 ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = majortopic)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
@@ -58,7 +58,7 @@ fig2_annual <- exec_subset |>
                            labels = c("Military Readiness (1604)", "Naval & Weapons Procurement (1610)"))) |> 
   count(year, subtopic)
 
-# Figure 2: 
+# Figure 2: Executive Priorities in Defense: Military Readiness & Strategic Mobilization (Subtopic 1604) vs. Weapons & Naval Procurement (Subtopic 1610), 1945–2025
 ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
@@ -97,7 +97,7 @@ fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |>
     values_to = "n"
   )
 
-# Figure 3: 
+# Figure 3: Institutional Division of Labor in Defense Procurement: Presidential Orders vs. Enacted Legislation (Subtopic 1610), 1940s–2020s
 ggplot(fig3_annual, aes(x = year, y = n, color = institution, group = institution)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
@@ -116,7 +116,5 @@ ggplot(fig3_annual, aes(x = year, y = n, color = institution, group = institutio
     legend.position = "bottom",
     plot.title = element_text(face = "bold", size = 11)
   )
-
-
 
 
