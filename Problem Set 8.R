@@ -15,7 +15,11 @@ setwd("~/Desktop/Current Classes/R/Problem Set 8")
 exec <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Executive_Orders.csv")
 public <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Public_Laws.csv")
 
-# Filter 
+# Select subset of rows we need for analysis 
+# Select subset of rows we need for analysis 
+exec_subset <- exec |> select(year, majortopic, subtopic)
+public_subset <- public |> select(year, majortopic, subtopic)
+
 
 
 
