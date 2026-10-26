@@ -15,11 +15,8 @@ exec <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Executive_Or
 public <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Public_Laws.csv")
 
 # Select subset of rows we need for analysis 
-# Select subset of rows we need for analysis 
 exec_subset <- exec |> select(year, majortopic, subtopic)
 public_subset <- public |> select(year, majortopic, subtopic)
-
-# Graphing
 
 # Aggregate annual counts for Topics 10 and 16
 fig1_annual <- exec_subset |> 
@@ -28,6 +25,7 @@ fig1_annual <- exec_subset |>
                              levels = c(16, 10), 
                              labels = c("Defense (Topic 16)", "Transportation (Topic 10)"))) |> 
   count(year, majortopic)
+
 
 # Figure 1: Trends in Presidential Executive Orders: National Defense (Topic 16) vs. Transportation (Topic 10), 1945–2025
 ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = majortopic)) +
@@ -79,7 +77,7 @@ ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
   )
 
 
-# Aggregate annual counts for Subtopic 1610 across both datasets
+# Aggregate annual counts for Subtopic 1610 across both data sets
 eo_1610 <- exec_subset |> 
   filter(year >= 1945, subtopic == 1610) |> 
   count(year, name = "Executive Orders")
@@ -88,7 +86,7 @@ pl_1610 <- public_subset |>
   filter(year >= 1945, subtopic == 1610) |> 
   count(year, name = "Public Laws")
 
-# Join or merge datasets into a unified long-format DataFrame
+# Join or merge data sets into a unified long-format df
 fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |> 
   replace_na(list(`Executive Orders` = 0, `Public Laws` = 0)) |> 
   pivot_longer(
