@@ -11,6 +11,10 @@ library(haven)
 # Set the working directory
 setwd("~/Desktop/Current Classes/R/Problem Set 8")
 
+# Load in the 2 datasets (Executive Memos and Public Law Titles)
+exec <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Executive_Orders.csv")
+public <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Public_Laws.csv")
+
 # Filter 
 
 
