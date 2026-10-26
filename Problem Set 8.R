@@ -20,7 +20,5 @@ public <- read.csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Public_Law
 exec_subset <- exec |> select(year, majortopic, subtopic)
 public_subset <- public |> select(year, majortopic, subtopic)
 
-
-
-
 # Graph
+
