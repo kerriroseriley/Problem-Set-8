@@ -1,5 +1,6 @@
 #Title: Problem Set 8
 #Author: Kerri Rose Riley
-#Purpose: 
-#Requires: Cumulative CCES Dataset (2006-2024)
+#Purpose: To use multiple Policy Agendas project datasets to visualize how attention has varied across major policy/topic areas from 1950 (or prior) to the present.
+#Requires: 
 #Output: Figures and Quarto Document typeset as a .pdf
+

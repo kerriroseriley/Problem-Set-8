@@ -1,6 +1,19 @@
 ---
 title: "Problem Set 8"
 author: "Kerri Rose Riley"
-format: html
+format:
+  pdf: default
 ---
 
+What follows are three visualizations showing...
+
+- Figure 1: 
+- Figure 2: 
+- Figure 3: 
+
+## Figure 1
+![Figure 1](Figures/figure1.png){fig-align="center" width="70%"}
+## Figure 2
+![Figure 2](Figures/figure2.png){fig-align="center" width="70%"}
+## Figure 3
+![Figure 3](Figures/figure3.png){fig-align="center" width="70%"}
