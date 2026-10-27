@@ -1,7 +1,7 @@
 #Title: Problem Set 8
 #Author: Kerri Rose Riley
 #Purpose: To use multiple Policy Agendas project data sets to visualize how attention has varied across major policy/topic areas from 1950 (or prior) to the present.
-#Requires: US_Executive_Orders.csv and US_Public_Laws.csv files.
+#Requires: The Public Law Titles data set and the Executive Orders data set from the Competitive Agendas Project
 #Output: Figures and Quarto Document typeset as a .pdf
 
 # Import Packages
@@ -21,8 +21,8 @@ public_subset <- public |> select(year, majortopic, subtopic)
 # Aggregate annual counts for Topics 10 and 16
 # Create new df 'fig1_annual' and then pass exec_subset into next transformation
 fig1_annual <- exec_subset |> 
-  # Filter rows for years 1945-present and majortopic is 10 or 16 
-  filter(year >= 1945, majortopic %in% c(10, 16)) |> 
+  # Filter rows for majortopic is 10 or 16 
+  filter(majortopic %in% c(10, 16)) |> 
   # Drops columns with missing values for majortopic
   drop_na(year, majortopic) |> 
   # convert majortopic into a categorical factor
@@ -33,13 +33,20 @@ fig1_annual <- exec_subset |>
   # Groups by year and majortopic and counts the number of rows for each combination
   count(year, majortopic)
 
+
 # Figure 1: Trends in Presidential Executive Orders: National Defense (Topic 16) vs. Transportation (Topic 10), 1945–2025
+# aes is the aesthetic layer
+# Initializes the plot1 using the fig1_annual data set and maps year to the x-axis and count(n) to the y-axis
 plot1 <- ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = majortopic)) +
+  # Connect points with line
   geom_line(linewidth = 1) +
+  # Add individual points at each year with partial transparency
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Defense (Topic 16)" = "#1f77b4", 
                                 "Transportation (Topic 10)" = "#ff7f0e")) +
+  # Sets axis ticks/breaks
   scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
+  # Styling: Sets main plot title, subtitle, x, and y-axis labels
   labs(
     title = "Trends in Presidential Executive Orders: National Defense vs. Transportation, 1945–2025",
     subtitle = "Annual count of executive directives (Comparative Agendas Project)",
@@ -55,12 +62,13 @@ plot1 <- ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = ma
 
 # Aggregate annual counts for subtopics 1604 and 1610
 fig2_annual <- exec_subset |> 
-  # Filter for 1945 and after, and for subtopic
-  filter(year >= 1945, subtopic %in% c(1604, 1610)) |> 
+  # Filter for subtopic
+  filter(subtopic %in% c(1604, 1610)) |> 
   # Drop records with missing values for subtopic
   drop_na(year, subtopic) |> 
   # convert subtopic into a categorical factor
   mutate(subtopic = factor(subtopic, 
+                           # Sets legend ordering
                            levels = c(1604, 1610), 
                            labels = c("Military Readiness (1604)", "Naval & Weapons Procurement (1610)"))) |> 
   # Groups by year and subtopic and counts the number of rows for each combination
@@ -89,18 +97,18 @@ plot2 = ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subto
 
 # Aggregate annual counts for Subtopic 1610 across both datasets
 eo_1610 <- exec_subset |> 
-  # Filter for years after 1945, and for subtopic 1610
-  filter(year >= 1945, subtopic == 1610) |> 
+  # Filter for subtopic 1610
+  filter(subtopic == 1610) |> 
   # Calculate total counts under coloumn name "Executive Orders"
   count(year, name = "Executive Orders")
 
 pl_1610 <- public_subset |> 
-  # Filter for years after 1945, and for subtopic 1610
-  filter(year >= 1945, subtopic == 1610) |> 
-  # Calculate total counts under coloumn name "Public Laws"
+  # Filter for subtopic 1610
+  filter(subtopic == 1610) |> 
+  # Calculate total counts under column name "Public Laws"
   count(year, name = "Public Laws")
 
-# Merge into dataframe 'fig3_annual' by joining using year column
+# Merge into df 'fig3_annual' by joining using year column
 fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |> 
   # Ensure every year from 1945 to 2025 has a row in the dataset
   complete(year = 1945:2025) |> 
@@ -136,15 +144,15 @@ plot3 = ggplot(fig3_annual, aes(x = year, y = n, color = institution, group = in
 # Aggregate subtopic 1604
 # Create new df 'eo_1604
 eo_1604 <- exec_subset |> 
-  # Filter for 1945 and after and for subtopic 1604
-  filter(year >= 1945, subtopic == 1604) |> 
+  # Filter for subtopic 1604
+  filter(subtopic == 1604) |> 
   # Calculate total counts under column name "Executive Order" grouped by year
   count(year, name = "Executive Orders")
 
 # 
 pl_1604 <- public_subset |> 
-  # Filter for 1945 and after and for when subtopic = 1604
-  filter(year >= 1945, subtopic == 1604) |> 
+  # Filter for subtopic = 1604
+  filter(subtopic == 1604) |> 
   # Calculate total counts under column name "Public Laws" grouped by year
   count(year, name = "Public Laws")
 
