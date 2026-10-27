@@ -28,6 +28,10 @@ Key Takeaways: This graph shows overall macro-level executive attention. Defense
 
 ## Figure 2
 ![Figure 2](figures/figure2.png){fig-align="center" width="70%"}
+Maritime policy historically remains low and flat, typically averaging between 0 and 2 directives per year. Both general transportation and maritime policy show a sharp upward tick in 2025. Executive Order 14269 (Restoring America's Maritime Dominance) is classified under Subtopic 1007 due to its focus on commercial shipyards, port entry fees, harbor maintenance taxes, and merchant marine capacity.
+
+## Figure 3
+![Figure 3](figures/figure3.png){fig-align="center" width="70%"}
 1604 (Readiness): Includes issues related to military readiness, coordination of armed services air support and sealift capabilities, and national stockpiles of strategic materials.
 
 1610 (Procurement): Includes issues related to military procurement, conversion of old equipment, and weapons systems evaluation (including naval and shipbuilding contracts). 
@@ -37,15 +41,15 @@ Key Takeaways:
 - Post-1955 it flat-lined: Executive Orders specifically targeted at procurement and readiness have plummeted to near-zero counts per year.
 - Modern presidents rarely use unilateral Executive Orders to address defense procurement or industrial readiness.
 
-## Figure 3
-![Figure 3](figures/figure3.png){fig-align="center" width="70%"}
+## Figure 4
+![Figure 4](figures/figure4.png){fig-align="center" width="70%"}
 Subtopic 1610 explicitly captures policy outputs governing weapons acquisition, fleet modernization, and military industrial base contracts.
 
 Key Takeaways:
 - This graph shows Congress consistently dominates policy output via Public Laws, while unilateral Executive Orders remain at zero for decades. Rebuilding the Navy requires Congressional statutory funding. 
 
-## Figure 4
-![Figure 4](figures/figure4.png){fig-align="center" width="70%"}
+## Figure 5
+![Figure 5](figures/figure5.png){fig-align="center" width="70%"}
 Subtopic 1604 covers operational readiness, sealift capabilities, strategic material stockpiles, and force mobilization.
 
 Key Takeaways:

@@ -33,7 +33,6 @@ fig1_annual <- exec_subset |>
   # Groups by year and majortopic and counts the number of rows for each combination
   count(year, majortopic)
 
-
 # Figure 1: Trends in Presidential Executive Orders: National Defense (Topic 16) vs. Transportation (Topic 10), 1945–2025
 # aes is the aesthetic layer
 # Initializes the plot1 using the fig1_annual data set and maps year to the x-axis and count(n) to the y-axis
@@ -72,7 +71,7 @@ fig2_annual <- exec |>
   complete(year = 1945:2025, category, fill = list(n = 0))
 
 # Figure 2: Executive Priorities in Transportation: Maritime Policy vs. General Transit, 1940s–2025
-plot5 <- ggplot(fig2_annual, aes(x = year, y = n, color = category, group = category)) +
+plot2 <- ggplot(fig2_annual, aes(x = year, y = n, color = category, group = category)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Maritime Transportation (Subtopic 1007)" = "#1f77b4", 
@@ -229,5 +228,4 @@ ggsave("figures/figure2.png", plot = plot2, width = 8, height = 5, dpi = 300)
 ggsave("figures/figure3.png", plot = plot3, width = 8, height = 5, dpi = 300)
 ggsave("figures/figure4.png", plot = plot4, width = 8, height = 5, dpi = 300)
 ggsave("figures/figure5.png", plot = plot5, width = 8, height = 5, dpi = 300)
-
 
