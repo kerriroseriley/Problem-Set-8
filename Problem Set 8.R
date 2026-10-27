@@ -14,7 +14,7 @@ setwd("~/Desktop/Current Classes/R/Problem Set 8")
 exec <- read_csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Executive_Orders.csv")
 public <- read_csv("~/Desktop/Current Classes/R/Problem Set 8/data/US_Public_Laws.csv")
 
-# Select subset of rows we need for analysis and save in new dfs
+# Select subset of rows we need for analysis and save in new DataFrames
 exec_subset <- exec |> select(year, majortopic, subtopic)
 public_subset <- public |> select(year, majortopic, subtopic)
 
@@ -95,11 +95,11 @@ plot2 = ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subto
   )
 
 
-# Aggregate annual counts for Subtopic 1610 across both datasets
+# Aggregate annual counts for Subtopic 1610 across both data sets
 eo_1610 <- exec_subset |> 
   # Filter for subtopic 1610
   filter(subtopic == 1610) |> 
-  # Calculate total counts under coloumn name "Executive Orders"
+  # Calculate total counts under column name "Executive Orders"
   count(year, name = "Executive Orders")
 
 pl_1610 <- public_subset |> 
@@ -110,14 +110,17 @@ pl_1610 <- public_subset |>
 
 # Merge into df 'fig3_annual' by joining using year column
 fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |> 
-  # Ensure every year from 1945 to 2025 has a row in the dataset
+  # Ensure every year from 1945 to 2025 has a row in the data set
   complete(year = 1945:2025) |> 
   # Fill  missing values (NAs created by full_join/complete) with 0
   replace_na(list(`Executive Orders` = 0, `Public Laws` = 0)) |> 
   # Reshape data from wide to long format so "institution" maps to legend/colors in ggplot
   pivot_longer(
+    # columns to collapse
     cols = c("Executive Orders", "Public Laws"),
+    # New column storing category labels
     names_to = "institution",
+    # New column storing the aggregated counts (n)
     values_to = "n"
   )
 
@@ -149,7 +152,7 @@ eo_1604 <- exec_subset |>
   # Calculate total counts under column name "Executive Order" grouped by year
   count(year, name = "Executive Orders")
 
-# 
+# Aggregate subtopic 1604
 pl_1604 <- public_subset |> 
   # Filter for subtopic = 1604
   filter(subtopic == 1604) |> 
