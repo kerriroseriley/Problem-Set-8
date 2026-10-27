@@ -5,6 +5,10 @@ format:
   pdf: default
 ---
 
+Background:
+For my MPA Capstone, my group has been paired with Seaspan, a shipbuilding, repair, and maintenance company. Our project focus is centered around Executive Order 14269, "Restoring America's Maritime Dominance", which was passed by President Trump on April 9, 2025. For this analysis, I decided to conduct my research on how presidential and legislative attention has historically shifted across national defense and transportation policy, and how the institutional division of labor between executive orders and enacted laws shapes defense procurement and military readiness.
+
+
 What follows are three visualizations showing...
  
 - Figure 1: Trends in Presidential Executive Orders: National Defense (Topic 16) vs. Transportation (Topic 10), 1945–2025
