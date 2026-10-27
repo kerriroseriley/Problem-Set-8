@@ -21,7 +21,7 @@ public_subset <- public |> select(year, majortopic, subtopic)
 # Aggregate annual counts for Topics 10 and 16
 # Create new df 'fig1_annual' and then pass exec_subset into next transformation
 fig1_annual <- exec_subset |> 
-  # Filter rows for years 1945-present and majortopic is 10 or 16
+  # Filter rows for years 1945-present and majortopic is 10 or 16 
   filter(year >= 1945, majortopic %in% c(10, 16)) |> 
   # Drops columns with missing values for majortopic
   drop_na(year, majortopic) |> 
