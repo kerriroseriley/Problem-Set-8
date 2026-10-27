@@ -44,7 +44,7 @@ plot1 <- ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = ma
   scale_color_manual(values = c("Defense (Topic 16)" = "#1f77b4", 
                                 "Transportation (Topic 10)" = "#ff7f0e")) +
   # Sets axis ticks/breaks
-  scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
+  scale_x_continuous(breaks = seq(1945, 2025, by = 10)) +
   # Styling: Sets main plot title, subtitle, x, and y-axis labels
   labs(
     title = "Trends in Presidential Executive Orders: National Defense vs. Transportation, 1945–2025",
@@ -76,7 +76,7 @@ plot2 <- ggplot(fig2_annual, aes(x = year, y = n, color = category, group = cate
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Maritime Transportation (Subtopic 1007)" = "#1f77b4", 
                                 "Other Transportation Directives (Topic 10)" = "#ff7f0e")) +
-  scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
+  scale_x_continuous(breaks = seq(1945, 2025, by = 10)) +
   labs(
     title = "Executive Priorities in Transportation: Maritime Policy vs. General Transit, 1945–2025",
     subtitle = "Annual count of executive directives (Comparative Agendas Project Topic 10)",
@@ -111,7 +111,7 @@ plot3 = ggplot(fig3_annual, aes(x = year, y = n, color = subtopic, group = subto
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Military Readiness (1604)" = "#1f77b4", 
                                 "Naval & Weapons Procurement (1610)" = "#ff7f0e")) +
-  scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
+  scale_x_continuous(breaks = seq(1945, 2025, by = 10)) +
   labs(
     title = "Executive Priorities in Defense: Military Readiness vs. Procurement, 1945–2025",
     subtitle = "Annual count of executive directives (Comparative Agendas Project)",
@@ -161,7 +161,7 @@ plot4 = ggplot(fig4_annual, aes(x = year, y = n, color = institution, group = in
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Executive Orders" = "#1f77b4", 
                                 "Public Laws" = "#ff7f0e")) +
-  scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
+  scale_x_continuous(breaks = seq(1945, 2025, by = 10)) +
   labs(
     title = "Institutional Division of Labor in Defense Procurement, 1945–2025",
     subtitle = "Comparing Executive Directives vs. Passed Legislation (Subtopic 1610)",
@@ -208,7 +208,7 @@ plot5 = ggplot(fig5_annual, aes(x = year, y = n, color = institution, group = in
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Executive Orders" = "#1f77b4", 
                                 "Public Laws" = "#ff7f0e")) +
-  scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
+  scale_x_continuous(breaks = seq(1945, 2025, by = 10)) +
   labs(
     title = "Institutional Division of Labor in Military Readiness, 1945–2025",
     subtitle = "Comparing Executive Orders vs. Passed Legislation (Subtopic 1604)",
