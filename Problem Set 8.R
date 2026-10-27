@@ -60,8 +60,40 @@ plot1 <- ggplot(fig1_annual, aes(x = year, y = n, color = majortopic, group = ma
     plot.title = element_text(face = "bold", size = 11)
   )
 
+
+# Aggregate annual counts for Maritime (Subtopic 1007) vs. Other Transportation (Topic 10)
+fig2_annual <- exec |> 
+  filter(majortopic == 10) |> 
+  drop_na(year) |> 
+  mutate(category = ifelse(subtopic == 1007, 
+                           "Maritime Transportation (Subtopic 1007)", 
+                           "Other Transportation Directives (Topic 10)")) |> 
+  count(year, category) |> 
+  complete(year = 1945:2025, category, fill = list(n = 0))
+
+# Figure 2: Executive Priorities in Transportation: Maritime Policy vs. General Transit, 1940s–2025
+plot5 <- ggplot(fig2_annual, aes(x = year, y = n, color = category, group = category)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.5, alpha = 0.7) +
+  scale_color_manual(values = c("Maritime Transportation (Subtopic 1007)" = "#1f77b4", 
+                                "Other Transportation Directives (Topic 10)" = "#ff7f0e")) +
+  scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
+  labs(
+    title = "Executive Priorities in Transportation: Maritime Policy vs. General Transit, 1945–2025",
+    subtitle = "Annual count of executive directives (Comparative Agendas Project Topic 10)",
+    x = "Year",
+    y = "Number of Executive Orders",
+    color = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 11)
+  )
+
+
 # Aggregate annual counts for subtopics 1604 and 1610
-fig2_annual <- exec_subset |> 
+fig3_annual <- exec_subset |> 
   # Filter for subtopic
   filter(subtopic %in% c(1604, 1610)) |> 
   # Drop records with missing values for subtopic
@@ -74,8 +106,8 @@ fig2_annual <- exec_subset |>
   # Groups by year and subtopic and counts the number of rows for each combination
   count(year, subtopic)
 
-# Figure 2: Executive Priorities in Defense: Military Readiness & Strategic Mobilization (Subtopic 1604) vs. Weapons & Naval Procurement (Subtopic 1610), 1945–2025
-plot2 = ggplot(fig2_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
+# Figure 3: Executive Priorities in Defense: Military Readiness & Strategic Mobilization (Subtopic 1604) vs. Weapons & Naval Procurement (Subtopic 1610), 1945–2025
+plot3 = ggplot(fig3_annual, aes(x = year, y = n, color = subtopic, group = subtopic)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Military Readiness (1604)" = "#1f77b4", 
@@ -108,8 +140,8 @@ pl_1610 <- public_subset |>
   # Calculate total counts under column name "Public Laws"
   count(year, name = "Public Laws")
 
-# Merge into df 'fig3_annual' by joining using year column
-fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |> 
+# Merge into df 'fig4_annual' by joining using year column
+fig4_annual <- full_join(eo_1610, pl_1610, by = "year") |> 
   # Ensure every year from 1945 to 2025 has a row in the data set
   complete(year = 1945:2025) |> 
   # Fill  missing values (NAs created by full_join/complete) with 0
@@ -124,8 +156,8 @@ fig3_annual <- full_join(eo_1610, pl_1610, by = "year") |>
     values_to = "n"
   )
 
-# Figure 3: Institutional Division of Labor in Defense Procurement: Presidential Orders vs. Enacted Legislation (Subtopic 1610), 1940s–2020s
-plot3 = ggplot(fig3_annual, aes(x = year, y = n, color = institution, group = institution)) +
+# Figure 4: Institutional Division of Labor in Defense Procurement: Presidential Orders vs. Enacted Legislation (Subtopic 1610), 1940s–2020s
+plot4 = ggplot(fig4_annual, aes(x = year, y = n, color = institution, group = institution)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Executive Orders" = "#1f77b4", 
@@ -160,7 +192,7 @@ pl_1604 <- public_subset |>
   count(year, name = "Public Laws")
 
 # Merge or join both counts into a data set by Year
-fig4_annual <- full_join(eo_1604, pl_1604, by = "year") |> 
+fig5_annual <- full_join(eo_1604, pl_1604, by = "year") |> 
   # Expand time series so every year from 1945 to 2025 is explicitly represented
   complete(year = 1945:2025) |> 
   # Fill  missing values (NAs created by full_join/complete) with 0
@@ -172,8 +204,8 @@ fig4_annual <- full_join(eo_1604, pl_1604, by = "year") |>
     values_to = "n"
   )
 
-# Figure 4: 
-plot4 = ggplot(fig4_annual, aes(x = year, y = n, color = institution, group = institution)) +
+# Figure 5: 
+plot5 = ggplot(fig5_annual, aes(x = year, y = n, color = institution, group = institution)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
   scale_color_manual(values = c("Executive Orders" = "#1f77b4", 
@@ -196,4 +228,6 @@ ggsave("figures/figure1.png", plot = plot1, width = 8, height = 5, dpi = 300)
 ggsave("figures/figure2.png", plot = plot2, width = 8, height = 5, dpi = 300)
 ggsave("figures/figure3.png", plot = plot3, width = 8, height = 5, dpi = 300)
 ggsave("figures/figure4.png", plot = plot4, width = 8, height = 5, dpi = 300)
+ggsave("figures/figure5.png", plot = plot5, width = 8, height = 5, dpi = 300)
+
 
