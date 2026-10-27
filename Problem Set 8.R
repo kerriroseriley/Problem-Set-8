@@ -203,7 +203,6 @@ fig5_annual <- full_join(eo_1604, pl_1604, by = "year") |>
     values_to = "n"
   )
 
-# Figure 5: Institutional Division of Labor in Military Readiness: Presidential Orders vs. Enacted Legislation (Subtopic 1604), 1940s–2020s
 plot5 = ggplot(fig5_annual, aes(x = year, y = n, color = institution, group = institution)) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5, alpha = 0.7) +
