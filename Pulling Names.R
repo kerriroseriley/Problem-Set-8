@@ -32,4 +32,3 @@ public_titles <- public |>
   arrange(year, subtopic, public_law_no, law_description)
 
 public_titles
-
